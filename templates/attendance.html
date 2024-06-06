@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI WebBot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/attendance.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    {% include "navbar.html" %}
+
+    <!-- Thêm div để hiển thị thông báo -->
+    <div id="alert-message"
+        style="display: none; background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border: 1px solid #f5c6cb; border-radius: 5px;">
+        <span id="alert-text"></span>
+    </div>
+
+    <section class="video">
+        <div class="left">
+            <img src="{{ url_for('scan') }}" width="100%" class="img-thumbnail">
+        </div>
+        <div class="right">
+            <h3>Today Scan</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mã định danh</th>
+                        <th>Họ và tên</th>
+                        <th>Khoa</th>
+                        <th>Thời gian</th>
+                    </tr>
+                </thead>
+                <tbody id="scandata">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            chkNewScan()
+
+            function chkNewScan() {
+                reloadTable();
+                setTimeout(chkNewScan, 10000);
+            }
+
+            function reloadTable() {
+                $.ajax({
+                    url: '/loadData',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        var tr = $("#scandata");
+                        tr.empty();
+
+                        $.each(response, function (index, item) {
+                            // Chuyển đổi thời gian từ định dạng 'YYYY-MM-DD HH:MM:SS' sang 'DD/MM/YYYY'
+                            var formattedTime = moment(item.time).tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY HH:mm:ss');
+
+                            tr.append('<tr>' +
+                                '<td>' + item.idcode + '</td>' +
+                                '<td>' + item.name + '</td>' +
+                                '<td>' + item.major + '</td>' +
+                                '<td>' + formattedTime + '</td>' +  // Sử dụng thời gian đã được định dạng
+                                '</tr>');
+                        });
+                    },
+                    error: function (result) {
+                        console.log('no result!');
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

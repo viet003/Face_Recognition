@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>AI webBot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+  </head>
+  <body>
+    <header>
+        <div class="navbar">
+            <a href="{{ url_for('index') }}">
+              <img src="/static/images/logo.png" alt="" class="logo">
+            </a>
+            <div class="links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="">Works</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="{{ url_for('training') }}">Training</a></li>
+                <li><a href="" class="contact-btn">Contact</a></li>
+            </div>
+        </div>
+    </header>
+    <div class="subnav">
+          
+    </div>
+  </body>
+</html>

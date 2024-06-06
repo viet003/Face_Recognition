@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>AI WebBot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Roboto Mono", monospace;
+            font-optical-sizing: auto;
+        }
+    </style>
+    <!-- bootstrap, jquery -->
+
+</head>
+
+<body>
+    <!-- Header -->
+    {% include "navbar.html" %}
+
+    <!-- Thông báo -->
+    <div style="text-align: center; font-size: 16px;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div id="alert" class="alert alert-{{ category }}" style="position: absolute;top: 150px; right: 10px;">
+            <div class="button">
+                <div class="_main_button">
+                    <p style="color: #fff;">{{ message }} <i class="fa-solid fa-user-check"></i> </p>
+                </div>
+            </div>
+        </div>
+        <script>
+            // Hàm tự động biến mất thông báo sau một khoảng thời gian
+            setTimeout(function () {
+                var alertDiv = document.getElementById('alert');
+                alertDiv.style.display = 'none';
+            }, 3000); // 3s
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <section class="hero">
+        <div class="left">
+            <img src="/static/images/robot.png" alt="robot">
+        </div>
+        <div class="right">
+            <div class="infomate">
+                <h1>Welcome to our Project!</h1>
+                <p>
+                    Nhận diện khuôn mặt là công nghệ tiên tiến sử dụng trí tuệ nhân tạo để xác định và xác thực danh
+                    tính của một người qua hình ảnh hoặc video.
+                    Với khả năng xử lý nhanh chóng và chính xác, hệ thống nhận diện khuôn mặt của chúng tôi đem đến giải
+                    pháp an ninh hiệu quả và tiện lợi cho doanh nghiệp và người dùng cá nhân.
+                    Khám phá ngay để trải nghiệm sự an toàn và tiện ích vượt trội!
+                </p>
+            </div>
+            <div class="btn">
+                <a href="{{ url_for('addnew') }}" class="filled-btn">Thêm mới</a>
+                <a href="{{ url_for('attendance') }}" class="filled-btn">Điểm danh</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="work gradient-bg">
+        <div class="container">
+            <h1>Giới thiệu sơ lược về hệ thống</h1>
+            <p>
+                Nhận diện khuôn mặt hoạt động bằng cách sử dụng trí tuệ nhân tạo và các thuật toán học máy để phân tích
+                các đặc điểm khuôn mặt. Hệ thống sẽ so sánh hình ảnh khuôn mặt với cơ sở dữ liệu đã lưu trữ để xác định
+                hoặc xác thực danh tính. Quá trình này diễn ra nhanh chóng và chính xác, mang lại sự tiện lợi và an toàn
+                cao cho người dùng. Trải nghiệm công nghệ nhận diện khuôn mặt của chúng tôi để nâng cao bảo mật và hiệu
+                quả trong quản lý.
+            </p>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="head-card">
+                        <div class="number">1</div>
+                        <h2>MTCNN</h2>
+                    </div>
+                    <p>
+                        MTCNN (Multi-task Cascaded Convolutional Networks) là một thuật toán tiên tiến trong nhận diện
+                        khuôn mặt, nổi bật với khả năng phát hiện khuôn mặt chính xác và nhanh chóng...
+                    </p>
+                    <a href="#mtcnn" class="outline-btn">More</a>
+                </div>
+
+                <div class="card">
+                    <div class="head-card">
+                        <div class="number">2</div>
+                        <h2>FaceNet</h2>
+                    </div>
+                    <p>
+                        FaceNet là một mô hình nhận diện khuôn mặt tiên tiến được phát triển bởi Google. Sử dụng các
+                        mạng nơ-ron sâu, FaceNet chuyển đổi hình ảnh khuôn mặt thành các vector...
+                    </p>
+                    <a href="#facenet" class="outline-btn">More</a>
+                </div>
+
+                <div class="card">
+                    <div class="head-card">
+                        <div class="number">3</div>
+                        <h2>SVM model</h2>
+                    </div>
+                    <p>
+                        SVM (Support Vector Machine) là một kỹ thuật học máy mạnh mẽ được sử dụng trong nhận diện khuôn
+                        mặt. SVM hoạt động bằng cách tìm ra...
+                    </p>
+                    <a href="#svm" class="outline-btn">More</a>
+                </div>
+
+                <div class="card">
+                    <div class="head-card">
+                        <div class="number">4</div>
+                        <h2>MTCNN</h2>
+                    </div>
+                    <p>
+                        MTCNN (Multi-task Cascaded Convolutional Networks) là một thuật toán tiên tiến trong nhận diện
+                        khuôn mặt, nổi bật với khả năng phát hiện khuôn mặt chính xác và nhanh chóng...
+                    </p>
+                    <a href="#mtcnn" class="outline-btn">More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mtcnn" class="mtcnn">
+        <div class="right">
+            <div class="infomate">
+                <h1>Giới thiệu về MTCNN</h1>
+                <p>
+                    MTCNN (Multi-task Cascaded Convolutional Networks) là một thuật toán tiên tiến trong nhận diện
+                    khuôn mặt, nổi bật với khả năng phát hiện khuôn mặt chính xác và nhanh chóng. MTCNN hoạt động
+                    bằng cách kết hợp ba mạng nơ-ron sâu để xác định, căn chỉnh và trích xuất các đặc điểm khuôn mặt
+                    từ hình ảnh. Công nghệ này đảm bảo nhận diện khuôn mặt đáng tin cậy, thậm chí trong điều kiện
+                    ánh sáng yếu hoặc góc chụp phức tạp. Trải nghiệm MTCNN để đạt được hiệu suất cao trong các ứng
+                    dụng nhận diện khuôn mặt của bạn
+                </p>
+            </div>
+            <div class="btn">
+                <a href="{{ url_for('addnew') }}" class="filled-btn">Thêm mới</a>
+                <a href="{{ url_for('attendance') }}" class="filled-btn">Điểm danh</a>
+            </div>
+        </div>
+        <div class="left">
+            <img src="/static/images/ai.png" alt="robot">
+        </div>
+    </section>
+
+    <section id="facenet" class="hero">
+        <div class="left">
+            <img src="/static/images/facenet.png" alt="robot">
+        </div>
+        <div class="right">
+            <div class="infomate">
+                <h1>Giới thiệu về FaceNet</h1>
+                <p>
+                    FaceNet là một mô hình nhận diện khuôn mặt tiên tiến được phát triển bởi Google. Sử dụng các
+                    mạng nơ-ron sâu, FaceNet chuyển đổi hình ảnh khuôn mặt thành các vector đặc trưng duy nhất, giúp
+                    so sánh và xác định danh tính một cách chính xác. Với khả năng học tập mạnh mẽ, FaceNet đạt độ
+                    chính xác cao trong việc nhận diện và xác thực khuôn mặt, ngay cả trong điều kiện thay đổi về
+                    ánh sáng và góc nhìn. Khám phá công nghệ FaceNet để nâng cao bảo mật và hiệu quả cho hệ thống
+                    nhận diện khuôn mặt của bạn.
+                </p>
+            </div>
+            <div class="btn">
+                <a href="{{ url_for('addnew') }}" class="filled-btn">Thêm mới</a>
+                <a href="{{ url_for('attendance') }}" class="filled-btn">Điểm danh</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="svm" class="mtcnn">
+        <div class="right">
+            <div class="infomate">
+                <h1>Giới thiệu về SVM Model</h1>
+                <p>
+                    SVM (Support Vector Machine) là một kỹ thuật học máy mạnh mẽ được sử dụng trong nhận diện khuôn
+                    mặt. SVM hoạt động bằng cách tìm ra siêu phẳng tối ưu để phân tách dữ liệu thành các lớp khác
+                    nhau. Trong nhận diện khuôn mặt, SVM giúp phân loại và xác định khuôn mặt bằng cách phân tích
+                    các đặc trưng khuôn mặt được trích xuất từ hình ảnh. Nhờ tính chính xác cao và khả năng xử lý
+                    tốt với dữ liệu lớn, SVM là một công cụ hiệu quả để nâng cao độ tin cậy và hiệu suất của hệ
+                    thống nhận diện khuôn mặt của bạn.
+                </p>
+            </div>
+            <div class="btn">
+                <a href="{{ url_for('addnew') }}" class="filled-btn">Thêm mới</a>
+                <a href="{{ url_for('attendance') }}" class="filled-btn">Điểm danh</a>
+            </div>
+        </div>
+        <div class="left">
+            <img src="/static/images/svm.png" alt="robot">
+        </div>
+    </section>
+
+    <!-- footer -->
+    {% include "footer.html" %}
+
+    <script>
+        $(document).ready(function () {
+            $("a[href^='#']").on('click', function (event) {
+                var target = this.hash;
+                event.preventDefault();
+
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top
+                }, 800, function () {
+                    window.location.hash = target;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

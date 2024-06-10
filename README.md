@@ -33,9 +33,9 @@ Trước khi sử dụng, cần download bộ nhận dạng và dataset tại đ
 Giải nén model_data rồi cho vào folder facial-expression-recognition-svm
 
 Huấn luyện:
-Chương trình có thể nhận diện được nhiều khuôn mặt khác nhau trong cùng 1 khung hình với độ chính xác trên tập dữ liệu nhỏ nằm trong khoảng 95.5 -> 98.5%:
+Chương trình có thể nhận diện được nhiều khuôn mặt khác nhau trong cùng 1 khung hình với độ chính xác trên tập dữ liệu nhỏ và vừa nằm trong khoảng 95.5 -> 98.5%:
 
-Tuy nhiên, dữ được training mà chương trình có thể nhận dạng thì độ chính xác sẽ càng thấp, cho nên trên mỗi tệp dữ liệu người dùng chúng ta cần tăng số lượng điểm ảnh khác nhau và số lượng ảnh trên mỗi tệp để tăng độ chính xác chung cho toàn bộ chương trình:
+Tuy nhiên, dữ được training mà chương trình huấn luyện càng lớn thì chương trình có thể nhận dạng thì độ chính xác sẽ càng thấp, cho nên trên mỗi tệp dữ liệu người dùng chúng ta cần tăng số lượng điểm ảnh khác nhau và số lượng ảnh trên mỗi tệp để tăng độ chính xác chung cho toàn bộ chương trình:
 
 Cấu hình lại địa chỉ liên kết Mysql:
 

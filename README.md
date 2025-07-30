@@ -49,4 +49,4 @@ python svm_model.py (hoặc restart lại app)
 Nếu tập dữ liệu càng lớn thì thời gian chạy càng lâu
 
 Chạy nhận dạng:
-Trông của sổ chính của trang Web, nhấn điểm danh để thực hiện kiểm tra và đánh giá kết quả.
+Trong cửa sổ chính của trang Web, nhấn điểm danh để thực hiện kiểm tra và đánh giá kết quả.
